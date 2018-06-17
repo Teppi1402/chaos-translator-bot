@@ -1,19 +1,15 @@
 language: python
 python:
-  - 3.6
-
-install: 
-  - pip install -r requirements.txt
-
+- 3.6
+install:
+- pip install -r requirements.txt
 script:
-  - python -m unittest discover
-    
+- python -m unittest discover
 branches:
   only:
-    - master
-
+  - master
 deploy:
   provider: heroku
   api_key:
-    secure: HfS9FwFqUDpzVciVezXmAEaVb6JjXcZqEQg0kLfzLP6UR2efYSKzFO4TKratAqe2W/Q0dJp7OOanwqd1wf5Mw1raVy7X90JTFl8ZLPNtnXjkGt2TGWcPu9KA8357ApfbxLiC/DZ48xN+6fg6tyUHmeki6OTVY6FBTWXnzj3U2wTmS0mNtjewlypuz4j/VqxXu5bRkJalePBRANxgmuGvqCi/Gff2t0c5mJIWb+ftbw/0ARWANgHvYaKN3xudj7gM4MofDMwyX6KuKHl7IW+rH9+SAPy9OYHvhUT25qXmcw1aJJQ50yIUeERKRe/3huF9A011jbpVyPfEUghPhWTgv6yJX+x1Y+L7CW+vBTz/hcZb762Wuocju4V2yPqn+eupa5Vs9dQVmKqqpbsA7l5ptK/QDz0zn2Jed4JcgG1HYAgqSddlRpnvnkWK5fvOmNpV0kbQKJVeg2QVPej2IvCRJUPeV0CboaMAWVN/4y8tt91pjfn1egTdwStYvlHc1j8sfLDCNkZ/1egNjzswG8QDZ8GhXNAirkHVFnU5EG8PKbmGGOxtnmafyQpXv8oMyRW34rPK9uc7KBDutcU2R/JgsK2L0uoaWPzBBbnVesOCuk/Bz41I2YXeDYLpgf45XoWLgUnojULjPwUU/zubkBC48i2COVMkIcOQFEV8gbq+T04=
-  app: nott-translator-bot  
+    secure: NWEw25O5bdmnDHTLfrDWZ7/bfE/nGKz/C9jZ39t85joLQ11vBQbAA5t1TwSChnpIRzfdyL8nG6t4i+uVQnSWfzczo7uakREhdNat8wHpCj8OEI4Nyq4kq83z+lskV8HtOKH7iOI8iKUFr3XTVkVx3PhceEGoWtAl0U4fPbV0NjQy2G13xOjUOkUqSHHZ3kkEGa9a0d+C1lh4ztP0wBsxOsJ3gQM+gbvHb1dF4IpyAA06W+hwADmvIeelshLFtezC6xXWRE0HFdmK2oWLJue8dZ3lRyWZHKSDbG8F19w1lx0/1glTMYVMkFlkaHf1/nY3EEZXFfod8c4Xrndd1F8lC4LBWeeeScJohOnMm54bFbobJlaExXE5HL9kvPBZrUYGi3lCHD7EQyXT4kMqqK7RuUvuAiDuRwwok2jBs/XOnWG8kOXBx82qKgHZwARsyH/9I0kWvPKgKgdRa5q748RQtTM6RYI2GC2bpSWr8YMwvYRMBrs+W+Bbd6R9CKoOl6Ue8mspLksZUFzI2S5Sk/7Ib88r5zq6OI+3e7VJarFV953W1K+KzxMTSJdrkjmmejpieaymcdNS0KZr2/69g4r8vqRAxdTGdOwHn1vZEerb36SPFS0JSMtz9bQDmqFtwmUbA4htio6AtROG1Y1sU81xcWBIF4b96hApDwK9WAXDdlw=
+  app: nott-translator-bot
