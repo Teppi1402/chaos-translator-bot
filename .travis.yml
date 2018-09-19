@@ -10,6 +10,6 @@ branches:
   - master
 deploy:
   provider: heroku
-  api_key:
-    secure: a8ef39cd-bb19-4568-97c2-fe8aecd74715
+  api_key: a8ef39cd-bb19-4568-97c2-fe8aecd74715
+    secure: 
   app: chaos-translator-bot
