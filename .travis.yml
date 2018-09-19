@@ -8,3 +8,8 @@ script:
 branches:
   only:
   - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: a8ef39cd-bb19-4568-97c2-fe8aecd74715
+  app: chaos-translator-bot
