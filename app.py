@@ -50,13 +50,9 @@ def callback():
 
     return 'OK'
 
-def translate_text(text):
-    lang_detect=translator.detect(text).lang
-    if lang_detect == "en":
-        trans_text = translator.translate(text, dest='vi').text
-    else:
-        trans_text = translator.translate(text, dest='en').text
-    return trans_text
+def translate_text(text):    
+    en_text = translator.translate(text, dest='en').text
+    return en_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
