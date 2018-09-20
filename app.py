@@ -86,7 +86,7 @@ def handle_message(event):
             direction='ltr',            
             body=BoxComponent(
                 layout='vertical',
-                contents=[TextComponent(text=translated, weight='bold')]
+                contents=[TextComponent(text='test', weight='bold')]
             ),
     )    
     line_bot_api.reply_message(
