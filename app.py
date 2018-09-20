@@ -59,9 +59,7 @@ def translate_text(text):
         return none
     else:
         lang=translator.detect(text).lang
-        if lang == '':
-            return none
-        elif lang == 'en':
+        if lang == 'en':
             en_text = translator.translate(text, dest='vi').text
             return en_text
         else:
