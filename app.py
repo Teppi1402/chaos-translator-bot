@@ -4,13 +4,13 @@ from flask import Flask, request, abort
 from googletrans import Translator
 import requests
 from linebot import (
-    WebhookHandler
+    LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,    
+    MessageEvent, TextMessage, TextSendMessage,
 )
 
 app = Flask(__name__)
