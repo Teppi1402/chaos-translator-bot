@@ -50,7 +50,9 @@ def callback():
     return 'OK'
 
 def translate_text(text):   
-    if text.startwith('/')==false:
+    if text.startwith('/'):
+        return none
+    else:
         lang=translator.detect(text).lang
         if lang=='en':
             en_text = translator.translate(text, dest='vi').text
@@ -62,9 +64,10 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     translated = translate_text(text)
-    line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=translated))
+    if translated is not none:
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=translated))
     
 
 if __name__ == "__main__":
