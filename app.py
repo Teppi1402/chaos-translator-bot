@@ -75,113 +75,11 @@ def translate_text(text):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    #text = event.message.text
-    #translated = translate_text(text)
-    #line_bot_api.reply_message(
-            #event.reply_token,
-            #TextSendMessage(text=translated))
     text = event.message.text
     translated = translate_text(text)
-    bubble = BubbleContainer(
-            direction='ltr',
-            hero=ImageComponent(
-                url='https://example.com/cafe.jpg',
-                size='full',
-                aspect_ratio='20:13',
-                aspect_mode='cover',                
-            ),
-            body=BoxComponent(
-                layout='vertical',
-                contents=[
-                    # title
-                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
-                    # review
-                    BoxComponent(
-                        layout='baseline',
-                        margin='md',
-                        contents=[
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
-                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
-                                          flex=0)
-                        ]
-                    ),
-                    # info
-                    BoxComponent(
-                        layout='vertical',
-                        margin='lg',
-                        spacing='sm',
-                        contents=[
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='Place',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text='Shinjuku, Tokyo',
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5
-                                    )
-                                ],
-                            ),
-                            BoxComponent(
-                                layout='baseline',
-                                spacing='sm',
-                                contents=[
-                                    TextComponent(
-                                        text='Time',
-                                        color='#aaaaaa',
-                                        size='sm',
-                                        flex=1
-                                    ),
-                                    TextComponent(
-                                        text="10:00 - 23:00",
-                                        wrap=True,
-                                        color='#666666',
-                                        size='sm',
-                                        flex=5,
-                                    ),
-                                ],
-                            ),
-                        ],
-                    )
-                ],
-            ),
-            footer=BoxComponent(
-                layout='vertical',
-                spacing='sm',
-                contents=[
-                    # callAction, separator, websiteAction
-                    SpacerComponent(size='sm'),
-                    # callAction
-                    ButtonComponent(
-                        style='link',
-                        height='sm',                        
-                    ),
-                    # separator
-                    SeparatorComponent(),
-                    # websiteAction
-                    ButtonComponent(
-                        style='link',
-                        height='sm',                        
-                    )
-                ]
-            ),
-        )
-    message = FlexSendMessage(alt_text="hello", contents=bubble)
     line_bot_api.reply_message(
-        event.reply_token,
-        message    
+            event.reply_token,
+            TextSendMessage(text=translated))    
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
