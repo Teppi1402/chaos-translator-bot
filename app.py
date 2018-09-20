@@ -29,8 +29,7 @@ def homepage():
     return """
     <h1>Hello Translator-Bot</h1>
     <p>It is currently {time}.</p>
-
-    <img src="http://loremflickr.com/600/400">
+   
     """.format(time=the_time)
 
 @app.route("/callback", methods=['POST'])
@@ -50,13 +49,14 @@ def callback():
 
     return 'OK'
 
-def translate_text(text):    
-    lang=translator.detect(text).lang
-    if lang=='en':
-        en_text = translator.translate(text, dest='vi').text
-    else:
-        en_text = translator.translate(text, dest='en').text
-    return en_text
+def translate_text(text):   
+    if text.startwith('/')==false:
+        lang=translator.detect(text).lang
+        if lang=='en':
+            en_text = translator.translate(text, dest='vi').text
+        else:
+            en_text = translator.translate(text, dest='en').text
+        return en_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
