@@ -56,9 +56,10 @@ def translate_text(text):
         lang=translator.detect(text).lang
         if lang=='en':
             en_text = translator.translate(text, dest='vi').text
+            return en_text
         else:
             en_text = translator.translate(text, dest='en').text
-        return en_text
+            return en_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
