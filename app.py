@@ -63,13 +63,12 @@ def translate_text(text):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    text = event.message.text
-    translated = translate_text(text)
+    chattext = event.message.text
+    translated = translate_text(chattext)
     bubble = BubbleContainer(
             direction='ltr',
             body=BoxComponent(
-                layout='vertical',
-                backgroundColor='#aaffaa',
+                layout='vertical',                
                 contents=[TextComponent(text=translated, weight='bold')]
             ),
     )
