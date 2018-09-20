@@ -50,7 +50,7 @@ def callback():
     return 'OK'
 
 def translate_text(text):   
-    if text.startwith('/'):
+    if text.startwith('/',0,1):
         return none
     else:
         lang=translator.detect(text).lang
