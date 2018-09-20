@@ -11,9 +11,13 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
+    CarouselTemplate, CarouselColumn, PostbackEvent,
+    StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
+    ImageMessage, VideoMessage, AudioMessage, FileMessage,
+    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
     TextComponent, SpacerComponent, IconComponent, ButtonComponent,
-    SeparatorComponent
+    SeparatorComponent,
 )
 
 app = Flask(__name__)
@@ -71,8 +75,8 @@ def translate_text(text):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    chattext = event.message.text
-    translated = translate_text(chattext)
+    text = event.message.text
+    translated = translate_text(text)
     bubble = BubbleContainer(
             direction='ltr',
             body=BoxComponent(
