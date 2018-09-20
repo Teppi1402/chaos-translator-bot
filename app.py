@@ -73,36 +73,33 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    translated = translate_text(text)
-    #line_bot_api.reply_message(
-            #event.reply_token,
-            #TextSendMessage(text=translated))
+    translated = translate_text(text)    
     carousel_template_message = TemplateSendMessage(
     alt_text='Carousel template',
-    template=CarouselTemplate(
-        columns=[
-            CarouselColumn(
-                thumbnail_image_url='https://example.com/item1.jpg',
-                title='this is menu1',
-                text='description1',
-                actions=[
-                    PostbackAction(
-                        label='postback1',
-                        text='postback text1',
-                        data='action=buy&itemid=1'
-                    ),
-                    MessageAction(
-                        label='message1',
-                        text='message text1'
-                    ),
-                    URIAction(
-                        label='uri1',
-                        uri='http://example.com/1'
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://example.com/item1.jpg',
+                        title='this is menu1',
+                        text='description1',
+                        actions=[
+                            PostbackAction(
+                                label='postback1',
+                                text='postback text1',
+                                data='action=buy&itemid=1'
+                            ),
+                            MessageAction(
+                                label='message1',
+                                text='message text1'
+                            ),
+                            URIAction(
+                                label='uri1',
+                                uri='http://example.com/1'
+                            )
+                        ]                
                     )
-                ]                
+                ]
             )
-        ]
-    )
     line_bot_api.reply_message(
             event.reply_token,
             carousel_template_message)
