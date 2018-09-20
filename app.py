@@ -181,11 +181,10 @@ def handle_message(event):
                 ]
             ),
         )
-        message = FlexSendMessage(alt_text="hello", contents=bubble)
-        line_bot_api.reply_message(
-            event.reply_token,
-            message
-        )
+    message = FlexSendMessage(alt_text="hello", contents=bubble)
+    line_bot_api.reply_message(
+        event.reply_token,
+        message    
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
