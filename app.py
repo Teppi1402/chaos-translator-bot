@@ -83,8 +83,7 @@ def handle_text_message(event):
     text = event.message.text 
     translated = translate_text(text)
     carousel_template = CarouselTemplate(columns=[
-        CarouselColumn(text=translated, title='fuga1', actions=[            
-        ]),       
+        CarouselColumn(text=translated, title='fuga1'),       
     ])
     template_message = TemplateSendMessage(
         alt_text='Carousel alt text', template=carousel_template)
