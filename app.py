@@ -88,8 +88,7 @@ def handle_message(event):
                 url='https://example.com/cafe.jpg',
                 size='full',
                 aspect_ratio='20:13',
-                aspect_mode='cover',
-                action=URIAction(uri='http://example.com', label='label')
+                aspect_mode='cover',                
             ),
             body=BoxComponent(
                 layout='vertical',
@@ -167,16 +166,14 @@ def handle_message(event):
                     # callAction
                     ButtonComponent(
                         style='link',
-                        height='sm',
-                        action=URIAction(label='CALL', uri='tel:000000'),
+                        height='sm',                        
                     ),
                     # separator
                     SeparatorComponent(),
                     # websiteAction
                     ButtonComponent(
                         style='link',
-                        height='sm',
-                        action=URIAction(label='WEBSITE', uri="https://example.com")
+                        height='sm',                        
                     )
                 ]
             ),
