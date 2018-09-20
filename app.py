@@ -65,9 +65,18 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     translated = translate_text(text)
+    bubble = BubbleContainer(
+            direction='ltr',
+            body=BoxComponent(
+                layout='vertical',
+                backgroundColor='#aaffaa',
+                contents=[TextComponent(text=translated, weight='bold')]
+            ),
+    )
+    flexmessage= FlexSendMessage(contents=bubble)
     line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=translated))
+            flexmessage)
     
 
 if __name__ == "__main__":
