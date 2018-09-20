@@ -82,8 +82,7 @@ def handle_message(event):
     )
     flexmessage= FlexSendMessage(alt_text="",contents=bubble)
     line_bot_api.reply_message(
-            event.reply_token,
-            flexmessage)
+            event.reply_token,flexmessage)
     
 
 if __name__ == "__main__":
