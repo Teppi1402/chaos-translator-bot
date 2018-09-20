@@ -4,20 +4,13 @@ from flask import Flask, request, abort
 from googletrans import Translator
 import requests
 from linebot import (
-    LineBotApi, WebhookHandler
+    WebhookHandler
 )
 from linebot.exceptions import (
-    LineBotApiError, InvalidSignatureError
+    InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
-    CarouselTemplate, CarouselColumn, PostbackEvent,
-    StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
-    ImageMessage, VideoMessage, AudioMessage, FileMessage,
-    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
-    FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
-    TextComponent, SpacerComponent, IconComponent, ButtonComponent,
-    SeparatorComponent,
+    MessageEvent, TextMessage, TextSendMessage,    
 )
 
 app = Flask(__name__)
@@ -50,12 +43,7 @@ def callback():
 
     # handle webhook body
     try:
-        handler.handle(body, signature)
-    except LineBotApiError as e:
-        print("Got exception from LINE Messaging API: %s\n" % e.message)
-        for m in e.error.details:
-            print("  %s: %s" % (m.property, m.message))
-        print("\n")
+        handler.handle(body, signature)    
     except InvalidSignatureError:
         abort(400)
 
@@ -76,17 +64,10 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    translated = translate_text(text)
-    bubble = BubbleContainer(
-            direction='ltr',
-            body=BoxComponent(
-                layout='vertical',                
-                contents=[TextComponent(text=translated, weight='bold')]
-            ),
-    )
-    flexmessage= FlexSendMessage(alt_text="",contents=bubble)
+    translated = translate_text(text)    
     line_bot_api.reply_message(
-            event.reply_token,flexmessage)
+            event.reply_token,
+            TextSendMessage(text=translated))
     
 
 if __name__ == "__main__":
