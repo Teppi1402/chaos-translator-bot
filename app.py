@@ -65,10 +65,9 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     translated = translate_text(text)
-    if translated is not none:
-        line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=translated))
+    line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=translated))
     
 
 if __name__ == "__main__":
