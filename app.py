@@ -15,9 +15,6 @@ from linebot.models import (
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
-    FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
-    TextComponent, SpacerComponent, IconComponent, ButtonComponent,
-    SeparatorComponent,
 )
 
 app = Flask(__name__)
@@ -77,9 +74,22 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     translated = translate_text(text)
+    #line_bot_api.reply_message(
+            #event.reply_token,
+            #TextSendMessage(text=translated))
+    carousel_template_message = TemplateSendMessage(
+    alt_text='Carousel template',
+    template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg',                
+                text=translated                
+            )
+        ]
+    )
     line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=translated))    
+            template)
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
