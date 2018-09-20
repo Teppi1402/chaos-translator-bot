@@ -75,12 +75,24 @@ def translate_text(text):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    #text = event.message.text
+    #translated = translate_text(text)
+    #line_bot_api.reply_message(
+            #event.reply_token,
+            #TextSendMessage(text=translated))
     text = event.message.text
     translated = translate_text(text)
+    bubble = BubbleContainer(
+            direction='ltr',            
+            body=BoxComponent(
+                layout='vertical',
+                contents=[TextComponent(text=translated, weight='bold')]
+            ),
+    )
+    flexmsg = FlexSendMessage(alt_text="", contents=bubble)
     line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=translated))
-    
+            flexmsg)
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
