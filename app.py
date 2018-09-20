@@ -88,11 +88,11 @@ def handle_message(event):
                 layout='vertical',
                 contents=[TextComponent(text=translated, weight='bold')]
             ),
-    )
-    
+    )    
     line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(alt_text="", contents=bubble))
+            FlexSendMessage(alt_text="", contents=bubble)
+    )
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
