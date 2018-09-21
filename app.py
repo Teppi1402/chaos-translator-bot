@@ -19,13 +19,12 @@ translator = Translator()
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 
-line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
+line_bot_api = LineBotApi('xV4mgKpwcK4p1fOCAdOH2IXFmyRgClO+oaG7+xtWsd8x9ZrVCWifmwOYtm+k6s1JFwn3+5IEvxgEIQX3SrB462J9/FrwEXO1vllaiL5jbce+6Ce2WEJDwhY8vWwr46wgs0CADAq/RLxrDRtDjlU9jQdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
 
 @app.route('/')
 def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
-
+    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")    
     return """
     <h1>Hello Translator-Bot</h1>
     <p>It is currently {time}.</p>
@@ -49,8 +48,7 @@ def callback():
 
     return 'OK'
 
-def translate_text(text): 
-    print translator.translate('hello', dest='vi')
+def translate_text(text):     
     lang = translator.detect(text).lang
     if lang == 'en':
         en_text = translator.translate(text, dest='vi').text
@@ -62,7 +60,7 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    if text.startswith('/'):
+    if text.startswith('/') or len(text) <= 3:
         return
     else:
         translated = translate_text(text)
