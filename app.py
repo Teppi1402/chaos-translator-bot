@@ -23,9 +23,7 @@ line_bot_api = LineBotApi('xV4mgKpwcK4p1fOCAdOH2IXFmyRgClO+oaG7+xtWsd8x9ZrVCWifm
 handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
 
 @app.route('/')
-def homepage():
-    trans_text = translator.translate("Hello", dest='vi').text    
-    return trans_tex
+def homepage():   
     <h1>Hello Translator-Bot</h1>
     <p>It is currently {time}.</p>
    
