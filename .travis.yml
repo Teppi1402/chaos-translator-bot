@@ -11,5 +11,5 @@ branches:
 deploy:
   provider: heroku
   api_key: 
-    secure: 78c0b2da-f4e0-4dd6-9631-a41f0d02ad96
-  app: chaos-translator-bot
+    secure: 867246ad-0f48-461c-8ff0-5f2f12e9304e
+  app: epic-chaos-bot
