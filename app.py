@@ -25,11 +25,11 @@ handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
 @app.route('/')
 def homepage():
     trans_text = translator.translate("Hello", dest='vi').text    
-    return """
+    return trans_tex
     <h1>Hello Translator-Bot</h1>
     <p>It is currently {time}.</p>
    
-    """.text = trans_text
+    
 
 @app.route("/callback", methods=['POST'])
 def callback():
