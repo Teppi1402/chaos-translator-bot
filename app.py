@@ -14,7 +14,10 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
-translator = Translator()
+translator = Translator(service_urls=[
+      'translate.google.com',
+      'translate.google.com.vn',
+    ])
 
 line_bot_api = LineBotApi('xV4mgKpwcK4p1fOCAdOH2IXFmyRgClO+oaG7+xtWsd8x9ZrVCWifmwOYtm+k6s1JFwn3+5IEvxgEIQX3SrB462J9/FrwEXO1vllaiL5jbce+6Ce2WEJDwhY8vWwr46wgs0CADAq/RLxrDRtDjlU9jQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
@@ -58,10 +61,13 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    translated = text
-    line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=translated))
+    if text.startswith('/'):
+        return
+    else:
+        translated = translate_text(text)
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=translated))
    
 if __name__ == "__main__":
     app.run()
