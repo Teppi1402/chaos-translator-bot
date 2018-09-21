@@ -67,4 +67,4 @@ def handle_message(event):
             TextSendMessage(text=translated))
    
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=True)
+    app.run()
