@@ -62,13 +62,13 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    if text.startswith('/') or len(text) <= 3:
-        return none
-    else:
-        translated = translate_text(text)
-        line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=translated))
+    #if text.startswith('/') or len(text) <= 3:
+        #return none
+    #else:
+    translated = translate_text(text)
+    line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=translated))
     
 
 if __name__ == "__main__":
