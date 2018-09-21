@@ -50,8 +50,8 @@ def translate_text(text):
     if text.startswith('/'):
         return none
     else:
-        lang=translator.detect(text).lang
-        if lang == 'en':
+        retlang = translator.detect(text).lang
+        if retlang == 'en':
             en_text = translator.translate(text, dest='vi').text
             return en_text
         else:
