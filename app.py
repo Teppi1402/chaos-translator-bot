@@ -49,22 +49,13 @@ def callback():
 
     return 'OK'
 
-def translate_text(text):
-    lang = translator.detect(text).lang
-    
-    if lang == 'en':
-        en_text = translator.translate(text, dest='vi').text        
-    else:
-        en_text = translator.translate(text, dest='en').text
-        
+def translate_text(text):     
+    en_text = translator.translate(text, dest='en').text
     return en_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    #if text.startswith('/') or len(text) <= 3:
-        #return none
-    #else:
     translated = translate_text(text)
     line_bot_api.reply_message(
             event.reply_token,
