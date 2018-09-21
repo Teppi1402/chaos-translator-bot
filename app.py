@@ -25,9 +25,6 @@ handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
 @app.route('/')
 def homepage():   
     <h1>Hello Translator-Bot</h1>
-    <p>It is currently {time}.</p>
-   
-    
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -59,7 +56,7 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     if text.startswith('/') or len(text) <= 3:
-        return
+        return none
     else:
         translated = translate_text(text)
         line_bot_api.reply_message(
