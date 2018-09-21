@@ -19,12 +19,18 @@ translator = Translator()
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 
-line_bot_api = LineBotApi('xV4mgKpwcK4p1fOCAdOH2IXFmyRgClO+oaG7+xtWsd8x9ZrVCWifmwOYtm+k6s1JFwn3+5IEvxgEIQX3SrB462J9/FrwEXO1vllaiL5jbce+6Ce2WEJDwhY8vWwr46wgs0CADAq/RLxrDRtDjlU9jQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
+line_bot_api = LineBotApi(channel_access_token)
+handler = WebhookHandler(channel_secret)
 
 @app.route('/')
-def homepage():   
+def homepage():
+    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+
+    return """
     <h1>Hello Translator-Bot</h1>
+    <p>It is currently {time}.</p>
+    <img src="http://loremflickr.com/600/400">
+    """.format(time=the_time)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -43,14 +49,15 @@ def callback():
 
     return 'OK'
 
-def translate_text(text):     
+def translate_text(text):
     lang = translator.detect(text).lang
+    
     if lang == 'en':
-        en_text = translator.translate(text, dest='vi').text
-        return en_text
+        en_text = translator.translate(text, dest='vi').text        
     else:
         en_text = translator.translate(text, dest='en').text
-        return en_text
+        
+    return en_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -62,6 +69,7 @@ def handle_message(event):
         line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=translated))
-   
+    
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, use_reloader=True)
