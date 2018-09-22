@@ -1,7 +1,7 @@
 import os, re, json
 from datetime import datetime, date, timedelta
 from flask import Flask, request, abort
-from googletrans import Translator
+import goslate
 import requests
 from linebot import (
     LineBotApi, WebhookHandler
@@ -14,7 +14,7 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
-translator = Translator()
+gs = goslate.Goslate()
 
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
@@ -28,8 +28,7 @@ def homepage():
 
     return """
     <h1>Hello Translator-Bot</h1>
-    <p>It is currently {time}.</p>
-    <img src="http://loremflickr.com/600/400">
+    <p>It is currently {time}.</p>    
     """.format(time=the_time)
 
 @app.route("/callback", methods=['POST'])
@@ -49,17 +48,25 @@ def callback():
 
     return 'OK'
 
-def translate_text(text):     
-    en_text = translator.translate(text, dest='en').text
-    return en_text
+def translate_text(text):
+    lang_id = gs.detect(text)
+    if lang_id == 'en':
+        trans_text = gs.translate(text, 'vi')        
+        return trans_text
+    else:
+        ret_text = gs.translate(text, 'en')        
+        return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    translated = translate_text(text)
-    line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=translated))
+    if text.startswith('/') or len(text) <=3:
+        return none
+    else:
+        translated = translate_text(text)
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=translated))
     
 
 if __name__ == "__main__":
