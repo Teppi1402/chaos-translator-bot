@@ -61,9 +61,7 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     if text.startswith('/'):
-        return none
-    elif len(text) < 4:
-        return none
+        return none    
     else:
         translated = translate_text(text)
         line_bot_api.reply_message(
