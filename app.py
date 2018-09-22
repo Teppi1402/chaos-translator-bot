@@ -54,7 +54,7 @@ def translate_text(text):
         trans_text = gs.translate(text, 'vi')        
         return trans_text
     else:
-        ret_text = gs.translate(text, 'en')        
+        trans_text = gs.translate(text, 'en')        
         return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
