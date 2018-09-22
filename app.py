@@ -49,21 +49,21 @@ def callback():
     return 'OK'
 
 def translate_text(text):
-    #lang_id = gs.detect(text)
-    #if lang_id == 'en':
-        #trans_text = gs.translate(text, 'vi')        
-        #return trans_text
-    #else:
-    trans_text = gs.translate(text, 'vi')        
+    lang = gs.detect(text)
+    
+    if lang == "en":
+        trans_text = gs.translate(text, 'vi')       
+    else:
+        trans_text = gs.translate(text, 'vi') 
+        
     return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
+    
     if text.startswith('/'):
-        return none
-    elif len(text) < 4:
-        return none
+        return none    
     else:
         translated = translate_text(text)
         line_bot_api.reply_message(
