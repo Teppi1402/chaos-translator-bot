@@ -60,7 +60,7 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    if text.startswith('/') or len(text) <=3:
+    if text.startswith('/'):
         return none
     else:
         translated = translate_text(text)
