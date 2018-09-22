@@ -49,13 +49,13 @@ def callback():
     return 'OK'
 
 def translate_text(text):
-    lang_id = gs.detect(text)
-    if lang_id == 'en':
-        trans_text = gs.translate(text, 'vi')        
-        return trans_text
-    else:
-        trans_text = gs.translate(text, 'en')        
-        return trans_text
+    #lang_id = gs.detect(text)
+    #if lang_id == 'en':
+        #trans_text = gs.translate(text, 'vi')        
+        #return trans_text
+    #else:
+    trans_text = gs.translate(text, 'vi')        
+    return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
