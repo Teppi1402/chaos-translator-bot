@@ -1,7 +1,7 @@
 import os, re, json
 from datetime import datetime, date, timedelta
 from flask import Flask, request, abort
-import urllib2
+import urllib.request
 import goslate
 import requests
 from linebot import (
@@ -16,9 +16,9 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-proxy_handler = urllib2.ProxyHandler({"http" : "http://142.4.209.32:3128"})
-proxy_opener = urllib2.build_opener(urllib2.HTTPHandler(proxy_handler),
-                                    urllib2.HTTPSHandler(proxy_handler))
+proxy_handler = urllib.request.ProxyHandler({"http" : "http://142.4.209.32:3128"})
+proxy_opener = urllib.request.build_opener(urllib.request.HTTPHandler(proxy_handler),
+                                    urllib.request.HTTPSHandler(proxy_handler))
 gs = goslate.Goslate(opener=proxy_opener)
 
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
