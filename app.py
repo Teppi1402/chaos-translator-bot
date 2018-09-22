@@ -54,7 +54,7 @@ def translate_text(text):
     if lang == "en":
         trans_text = gs.translate(text, 'vi')       
     else:
-        trans_text = gs.translate(text, 'vi') 
+        trans_text = gs.translate(text, 'en') 
         
     return trans_text
 
@@ -62,7 +62,7 @@ def translate_text(text):
 def handle_message(event):
     text = event.message.text
     
-    if text.startswith('/'):
+    if text.startswith("/"):
         return none    
     else:
         translated = translate_text(text)
