@@ -24,8 +24,8 @@ gs = goslate.Goslate()
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 
-line_bot_api = LineBotApi('xV4mgKpwcK4p1fOCAdOH2IXFmyRgClO+oaG7+xtWsd8x9ZrVCWifmwOYtm+k6s1JFwn3+5IEvxgEIQX3SrB462J9/FrwEXO1vllaiL5jbce+6Ce2WEJDwhY8vWwr46wgs0CADAq/RLxrDRtDjlU9jQdB04t89/1O/w1cDnyilFU=',60)
-handler = WebhookHandler('e4881dd59268051feae22f38584cded1')
+line_bot_api = LineBotApi('6YUtLz3LrrEPOMnxZLiZLS8lqkK6cEFIlbgqlNJ5BfwjYlV47vkbgDpanyR7UYXfFwn3+5IEvxgEIQX3SrB462J9/FrwEXO1vllaiL5jbcfU4daqLE7GIwflVOG+KXc1Bv5JquQ1fbAZlpbIASGG3AdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('a43d81c39b3638058ee9e84194da780d')
 
 @app.route('/')
 def homepage():
