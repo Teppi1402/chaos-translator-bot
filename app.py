@@ -16,10 +16,10 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-proxy_handler = urllib.request.ProxyHandler({"http" : "http://142.4.209.32:3128"})
-proxy_opener = urllib.request.build_opener(urllib.request.HTTPHandler(proxy_handler),
-                                    urllib.request.HTTPSHandler(proxy_handler))
-gs = goslate.Goslate(opener=proxy_opener)
+#proxy_handler = urllib.request.ProxyHandler({"http" : "http://142.4.209.32:3128"})
+#proxy_opener = urllib.request.build_opener(urllib.request.HTTPHandler(proxy_handler),
+                                    #urllib.request.HTTPSHandler(proxy_handler))
+gs = goslate.Goslate()
 
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
