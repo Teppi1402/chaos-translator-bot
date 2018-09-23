@@ -1,7 +1,6 @@
 import os, re, json
 from datetime import datetime, date, timedelta
 from flask import Flask, request, abort
-import urllib.request
 import goslate
 import requests
 from linebot import (
@@ -16,9 +15,6 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-#proxy_handler = urllib.request.ProxyHandler({"http" : "http://142.4.209.32:3128"})
-#proxy_opener = urllib.request.build_opener(urllib.request.HTTPHandler(proxy_handler),
-                                    #urllib.request.HTTPSHandler(proxy_handler))
 gs = goslate.Goslate()
 
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -62,7 +58,7 @@ def handle_message(event):
     translated = translate_text(event.message.text)
     line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=translated))
+            TextSendMessage(event.message.text))
     
 
 if __name__ == "__main__":
