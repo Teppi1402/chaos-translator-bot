@@ -1,7 +1,7 @@
 import os, re, json
 from datetime import datetime, date, timedelta
 from flask import Flask, request, abort
-import goslate
+from textblob import TextBlob
 import requests
 from linebot import (
     LineBotApi, WebhookHandler
@@ -14,11 +14,6 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
-
-gs = goslate.Goslate()
-
-channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
-channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 
 line_bot_api = LineBotApi('6YUtLz3LrrEPOMnxZLiZLS8lqkK6cEFIlbgqlNJ5BfwjYlV47vkbgDpanyR7UYXfFwn3+5IEvxgEIQX3SrB462J9/FrwEXO1vllaiL5jbcfU4daqLE7GIwflVOG+KXc1Bv5JquQ1fbAZlpbIASGG3AdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a43d81c39b3638058ee9e84194da780d')
@@ -50,20 +45,21 @@ def callback():
     return 'OK'
 
 def translate_text(text): 
-    lang = gs.detect(text)
+    tb = TextBlob(text)
+    lang = tb.detect_language()
     trans_text = ""
     if lang == "en":
-        trans_text = gs.translate(text, 'vi')
+        trans_text = tb.translate(to='vi')
     else:
-        trans_text = gs.translate(text, 'en')
+        trans_text = tb.translate(to='en')
     return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text    
-    if text == "" or "/" in text:
+    if text == "" or "/" in text or len(text) <=3:
         return
-    else:
+    else:        
         translated = translate_text(event.message.text)        
         line_bot_api.reply_message(
             event.reply_token,
