@@ -4,4 +4,4 @@ pylint
 gunicorn
 requests
 codecov
-goslate
+textblob
