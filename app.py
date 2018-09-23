@@ -52,7 +52,7 @@ def callback():
 def translate_text(text): 
     lang = gs.detect(text)
     trans_text = ""
-    if lang="en":
+    if lang == "en":
         trans_text = gs.translate(text, 'vi')
     else:
         trans_text = gs.translate(text, 'en')
