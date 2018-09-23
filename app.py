@@ -58,7 +58,7 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text    
-    if text == "" or "/" in text:
+    if text == "" or "/" in text or len(text) < 4:
         return
     else:        
         translated = translate_text(event.message.text)        
