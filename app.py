@@ -49,15 +49,16 @@ def translate_text(text):
     lang = tb.detect_language()
     trans_text = ""
     if lang == "en":
-        trans_text = tb.translate(to='vi')
+        tb.correct()
+        trans_text = str(ranslate(to='vi'))
     else:
-        trans_text = tb.translate(to='en')
+        trans_text = str(ranslate(to='en'))    
     return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text    
-    if text == "" or "/" in text or len(text) <=3:
+    if text == "" or "/" in text:
         return
     else:        
         translated = translate_text(event.message.text)        
