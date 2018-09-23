@@ -58,15 +58,11 @@ def translate_text(text):
     return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    text = event.message.text    
-    if text.startswith("/"):
-        return none    
-    else:
-        translated = translate_text(text)
-        line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=translated))
+def handle_message(event):            
+    translated = translate_text(event.message.text)
+    line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=translated))
     
 
 if __name__ == "__main__":
