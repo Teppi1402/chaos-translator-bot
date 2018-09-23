@@ -50,7 +50,12 @@ def callback():
     return 'OK'
 
 def translate_text(text): 
-    trans_text = gs.translate(text, 'vi')
+    lang = gs.detect(text)
+    trans_text = ""
+    if lang="en":
+        trans_text = gs.translate(text, 'vi')
+    else:
+        trans_text = gs.translate(text, 'en')
     return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
