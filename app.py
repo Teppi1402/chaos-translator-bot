@@ -50,9 +50,9 @@ def translate_text(text):
     trans_text = ""
     if lang == "en":
         tb.correct()
-        trans_text = str(translate(to='vi'))
+        trans_text = str(tb.translate(to='vi'))
     else:
-        trans_text = str(translate(to='en'))    
+        trans_text = str(tb.translate(to='en'))    
     return trans_text
 
 @handler.add(MessageEvent, message=TextMessage)
