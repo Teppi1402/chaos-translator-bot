@@ -48,8 +48,7 @@ def translate_text(text):
     tb = TextBlob(text)
     lang = tb.detect_language()
     trans_text = ""
-    if lang == "en":
-        tb.correct()
+    if lang == "en":        
         trans_text = str(tb.translate(to='vi'))
     else:
         trans_text = str(tb.translate(to='en'))    
@@ -58,7 +57,7 @@ def translate_text(text):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text    
-    if text == "" or "/" in text or len(text) < 4:
+    if text == "" or "#" in text or len(text) < 4:
         return
     else:        
         translated = translate_text(event.message.text)        
