@@ -45,10 +45,11 @@ def callback():
     return 'OK'
 
 def translate_text(text): 
-    tb = TextBlob(text)
+    tb = TextBlob(text)    
     lang = tb.detect_language()
     trans_text = ""
-    if lang == "en":        
+    if lang == "en": 
+        tb.correct()
         trans_text = str(tb.translate(to='vi'))
     else:
         trans_text = str(tb.translate(to='en'))    
